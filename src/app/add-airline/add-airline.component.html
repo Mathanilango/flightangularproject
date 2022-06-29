@@ -1,0 +1,42 @@
+
+<div class="card " >
+    <div class="card-header">Add New Airline</div>
+    <div *ngIf="showMsg">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>Added Successfully!.</strong> 
+
+          </p>
+        </div>
+      </div>
+      <div  *ngIf="showdng">
+        <div class="col-xs-12">
+          <p class="alert alert-danger">
+              <strong>Adding Failed!.</strong> 
+
+          </p>
+        </div>
+      </div>
+    <div class="card-body  d-flex justify-content-center">
+     
+        <!-- <div class=" col-md-14"> -->
+            <!-- <label for="inputAirlinename" >AirlineName</label> -->
+            <input  style="width: 78rem;" type="text" class="form-control"  [(ngModel)] ="Airlinename.Name" 
+            placeholder="Airlinename" required>
+            <!-- <div class="valid-feedback">Valid.</div> -->
+          <div class="invalid-feedback">Please fill out this field.</div>
+         
+          <button type="submit" style="height: 40px;" class="btn btn-primary" (click)="newairline()">Add</button>
+        
+        <!-- </div> -->
+        </div>
+</div>
+
+<!-- <table class = 'table table-striped' >
+    <tr *ngFor = 'let f of data'>
+        <td>{{f.productId}}</td>
+        <td>{{f.productName}}</td>
+        <td>{{f.productCode}}</td>
+        <td>{{f.releaseDate}}</td>
+    </tr>
+</table> -->

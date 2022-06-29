@@ -1,0 +1,88 @@
+<!-- <p>reactiveform works!</p> -->
+<!-- <form [formGroup]="formdata" (ngSubmit)="onsubmit(formdata.value) ">
+    <input type="text" name="user" placeholder="username" formControlName="firstname">
+    <input type="text" name="user" placeholder="username" formControlName="lastname">
+    <input type="submit" value="Submit">
+</form> -->
+
+<app-size1></app-size1>
+<div class="d-flex justify-content-md-center"> 
+      <div class="card text-center" style="width: 80rem;">           
+        <h5 class="card-header">Angular 8 Reactive Form Validation</h5>           
+        <div class="card-body">         
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" > 
+                                  <div class="form-row" style="align-items:flex-start;">                       
+                    <div class="form-group  col-md-3 ">                           
+                        <label for="drp1">Title</label>             
+                          <select formControlName="title" class="form-control" id="drp1" >     
+                                                  <option value=""></option>                             
+                              <option value="Mr">Mr</option>                             
+                              <option value="Mrs">Mrs</option>                               
+                            <option value="Miss">Miss</option>                               
+                            <option value="Ms">Ms</option>                           
+                        </select>                                                   
+                    </div>                       
+                    <div class="form-group col-md-3">                 
+                                  <label>First Name</label>                   
+                                <input type="text" formControlName="firstName" class="form-control"
+                            />               
+                                                       
+                    </div>                       
+                    <div class="form-group col-md-3">                         
+                          <label>Last Name</label>                           
+                        <input type="text" formControlName="lastName" class="form-control"
+                             />                 
+                                                 
+                               
+                    </div>                 
+                     
+                </div>     
+                <div class="form-row">               
+                <div class="form-group col">                     
+                      <label>Email</label>                       
+                    <input type="text" formControlName="email" class="form-control"
+                         />                       
+                                 
+                     
+                </div>                 
+                                        
+                    <div class="form-group col">                           
+                        <label>Password</label>                           
+                        <input type="password" formControlName="password" class="form-control"
+                            />                 
+                                                      
+                         
+                    </div>                       
+                    <div class="form-group col">                           
+                        <label>Confirm Password</label>                       
+                            <input type="password" formControlName="confirmPassword" class="form-control"
+                             />         
+                                             
+                                           
+                    </div>               
+                </div>     
+                         <div class="form-row">   
+                  <div class="form-group form-check">               
+                            <input type="checkbox" formControlName="acceptTerms" id="acceptTerms"
+                        class="form-check-input"
+                       />                 
+                     
+                        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>             
+                             
+                    <div ng-If="submitted && f.acceptTerms.errors" class="invalid-feedback">
+                        Accept Ts & Cs is required
+                    </div> 
+                                 
+                       
+                </div>    
+            </div>                
+                  <div class="text-center">                   
+                        <button class="btn btn-primary mr-1" type="submit">Register</button>     
+                        <button class="btn btn-secondary" type="reset">Clear</button>   
+
+                               
+                </div>               
+            </form>         
+                 
+         </div>      </div> 
+      </div>

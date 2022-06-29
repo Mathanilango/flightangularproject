@@ -1,0 +1,272 @@
+<div class="card " style="height: 12rem;" >
+    <div class="card-header" style="font-weight: bolder;">Add New Airline</div>
+    <div *ngIf="showMsg">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>Added Successfully!.</strong> 
+
+          </p>
+        </div>
+      </div>
+      <div  *ngIf="showdng">
+        <div class="col-xs-12">
+          <p class="alert alert-danger">
+              <strong>Adding Failed!.</strong> 
+
+          </p>
+        </div>
+      </div>
+    <div class="card-body  d-flex justify-content-center">
+     
+        <!-- <div class=" col-md-14"> -->
+            <!-- <label for="inputAirlinename" >AirlineName</label> -->
+            <input  style="width: 78rem;" type="text" class="form-control"  [(ngModel)] ="Airlinename.Name" 
+            placeholder="Airlinename" required>
+            <!-- <div class="valid-feedback">Valid.</div> -->
+          <div class="invalid-feedback">Please fill out this field.</div>
+         
+          <button type="submit" style="height: 40px;" class="btn btn-primary" (click)="newairline()">Add</button>
+        
+        <!-- </div> -->
+        </div>
+</div>
+<div class="card " >
+  <div class="card-header" style="font-weight: bolder;">Block/Unblock Airline</div>
+  
+  <div class="card-title"><input
+      type="text"
+      [(ngModel)]="searchText"
+      class="form-control"
+      id="search"
+      placeholder="Search by airlinename..."
+      
+    /></div>
+  <div class="card-body  d-flex justify-content-center" >
+      <div class="row" style="width: 80rem;" >
+      <!-- <input
+        type="text"
+        [(ngModel)]="searchText"
+        class="form-control"
+        id="search"
+        placeholder="Search by airlinename..."
+        
+      /> -->
+      <!-- <form #f="ngForm" >
+      <div class="row col-md-14">
+          <label  >AirlineName</label>
+          <input type="text"   name ="airlineno" 
+          placeholder="Airlinename" ngModel>
+        
+       
+        <button type="submit" style="height: 40px; float: center;" class="btn btn-primary" (click)="searchairline(f.value.airlineno)">search</button>
+      
+      </div>
+  </form> -->
+     
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">AirlineNo</th>
+        <th scope="col">Airlinename</th>
+        <th scope="col">Datecreated</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+  <tr *ngFor = "let f of data1 | tableFilter: searchText"
+   [ngClass]="{'highlight': !f.blocked, 'name_highlighter': f.blocked}" style="height: 5px;">
+      <td >{{f.id}}</td>
+      <td>{{f.name}}</td>
+      <!-- <td>{{f.blocked}}</td> -->
+      <td>{{f.datecreated|date:'MM/dd/yyyy'}}</td>
+      <td>
+        <button type="button" class="btn btn-info"
+          [disabled]="f.blocked" (click)="blockairline(f.id)">block</button></td>
+          <!-- <td><a >Block</a></td> -->
+    <td><button type="button" class="btn btn-danger"[disabled]="!f.blocked" 
+          (click)="Unblockairline(f.id)">Unblock</button></td> 
+
+          <td><button type="button" class="btn btn-warning" (click)="openModal(editProfileModal, f.id)" [disabled]="f.blocked">Addflight</button></td>
+          <td><button type="button" class="btn btn-success" style="color: black;" (click)="openflightModal(viewProfileModal, f.id)" [disabled]="f.blocked">Viewflight</button></td>
+  </tr>
+</table>
+
+      </div>   
+</div>
+</div>
+<ng-template #viewProfileModal let-modal>
+  <div classs="modal-header">
+    <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+  <h5 class="modal-title" id="editProfileLabel" style="font-weight: bolder;">View Flight</h5>
+  
+   </div>
+   <div class="modal-body" style="width: 500px;">
+<div class="card-body" style="overflow-x: scroll; overflow-y: scroll; width: 69rem;">
+   <table class="table" >
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">FlightNumber</th>
+        <th scope="col">AirlineNo</th>
+        <th scope="col">Fromplace</th>
+        <th scope="col">Toplace</th>
+        <th scope="col">Startdate</th>
+        <th scope="col">Enddate</th>
+        <th scope="col">BusinessSeat</th>
+        <th scope="col">NonBusinessSeat</th>
+        <th scope="col">BusinessSeatCost</th>
+        <th scope="col">nonBusinessSeatCost</th>
+        <th scope="col">CouponCode</th>
+        <th scope="col">couponCodeAmount</th>
+      </tr>
+    </thead>
+  <tr *ngFor = "let f of flight" >
+      <td >{{f.flightnumber}}</td>
+      <td>{{f.airlineId}}</td>
+       <td>{{f.fromPlace}}</td> 
+       <td>{{f.toPlace}}</td> 
+       <td>{{f.startDate|date:'MM/dd/yyyy'}}</td> 
+       <td>{{f.endDate|date:'MM/dd/yyyy'}}</td> 
+       <td>{{f.availableBusinessSeat}}</td> 
+       <td>{{f.availableNonBusinessSeat}}</td> 
+       <td>{{f.businessSeatCost}}</td> 
+       <td>{{f.nonBusinessSeatCost}}</td> 
+       <td>{{f.couponcode}}</td> 
+       <td>{{f.couponcodeamt}}</td> 
+      <!-- <td>{{f.datecreated|date:'MM/dd/yyyy'}}</td> -->
+      <td><button type="submit" class="btn btn-primary" style="color: black;" (click)=openviewModal(editProfileModal,f)>Schedule</button></td>
+  </tr>
+</table>
+</div>
+   </div>
+ 
+</ng-template>
+<ng-template #editProfileModal let-modal style="height: 100px;">
+  <div classs="modal-header"> <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+   </button>
+  <h5 class="modal-title" id="editProfileLabel">{{txt}}</h5>
+ 
+ </div>
+ <!-- <div class="modal-body" > -->
+<div class="card-body" >
+ <form class="form center" [formGroup]="FlightForm"  style="width: 500px;">
+   
+    <div class="form-row">
+  <div class="form-group col-md-4">
+      <label>From Place</label>
+      <input type="text" class="form-control" formControlName="FromPlace">
+      
+  </div>
+  <div class="form-group col-md-4">
+      <label>To Place</label>
+      <input type="text" class="form-control" formControlName="ToPlace" >
+     
+  </div>
+ 
+  <div class="form-group col-md-4">
+    <label>Start Date</label>
+    <div class="input-group">
+        <input type="datetime-local" class="form-control" formControlName="StartDate">
+    <!-- <input class="form-control" formControlName="StartDate" placeholder="yyyy-mm-dd" (dateSelect)="updateSelectedDate1($event)"
+             name="dp1"  ngbDatepicker #d="ngbDatepicker">
+      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+        <i class="fas fa-calendar"></i>
+      </button> -->
+   </div>
+</div>
+    </div>
+    <div class="form-row">
+<div class="form-group col-md-4">
+  <label>End Date</label>
+  <div class="input-group">
+      <input class="form-control" formControlName="EndDate" type="datetime-local">
+  <!-- <input class="form-control" formControlName="EndDate" placeholder="yyyy-mm-dd" (dateSelect)="updateSelectedDate($event)"
+           name="dp"  ngbDatepicker #d1="ngbDatepicker">
+    <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+      <i class="fas fa-calendar"></i>
+    </button> -->
+  </div>
+</div>
+  
+
+  <div class="form-group col-md-4">
+  <label>Schedule Day</label>
+  <select id="inputgender" class="form-control" formControlName="ScheduleDays">
+    <option selected>Monday</option>
+    <option>Tuesday</option>
+    <option>Wednesday</option>
+    <option>Thursday</option>
+    <option>Friday</option>
+    <option>Saturday</option>
+    <option>Sunday</option>
+  </select>
+</div>
+
+<div class="form-group col-md-4">
+  <label>Instrument</label>
+  <input type="text" class="form-control" formControlName="Instrument">
+ 
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label>Bussiness Seat</label>
+    <input type="text" class="form-control" formControlName="BusinessSeat">
+    
+</div>
+<div class="form-group col-md-4">
+    <label>Non-Bussiness Seat</label>
+    <input type="text" class="form-control" formControlName="NonBusinessSeat" >
+   
+</div>
+
+
+  <div class="form-group col-md-4">
+    <label>BusinessSeatCost</label>
+    <input type="text" class="form-control" formControlName="BusinessSeatCost">
+    
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label>NonBusinessSeatCost</label>
+    <input type="text" class="form-control" formControlName="NonBusinessSeatCost">
+  </div>  
+
+
+  <div class="form-group col-md-4">
+    <label>Couponcode</label>
+    <input type="text" class="form-control" formControlName="Couponcode">
+  </div>
+
+  <div class="form-group col-md-4">
+    <label>Couponcost</label>
+    <input type="text" class="form-control" formControlName="Couponcodeamt">
+  </div>  
+
+</div>
+
+
+ </form>
+<!-- </div> -->
+ </div>
+  
+        <div class="modal-footer">
+          <div *ngIf="isadd; else upt">
+        <button type="button" class="btn btn-success" [disabled]="!FlightForm.valid"
+        (click)="addflight()" > Submit</button>
+      </div>
+        <ng-template #upt>
+        <button type="button" class="btn btn-success" [disabled]="!FlightForm.valid"
+        (click)="updateflight()"  > 
+      Update</button>
+    </ng-template>
+      
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+            
+           </div>
+</ng-template>
+

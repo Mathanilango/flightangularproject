@@ -1,0 +1,23 @@
+.scrollit {
+    overflow:scroll;
+    height:13rem;
+    width: 70rem;
+}
+.table
+{
+    width: 80rem;
+    border-collapse: collapse;        
+   
+  }
+ 
+/* .fixTableHead {
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 200px;
+  }
+  .fixTableHead thead th {
+    position: sticky;
+    top: 0;
+  }
+  table {
+    */

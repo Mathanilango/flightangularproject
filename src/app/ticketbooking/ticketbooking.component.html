@@ -1,0 +1,216 @@
+ <div class="container-fluid" style="align-content: center; margin-top: 10px; padding-left: 3%;">
+    <div class="card " style="height: 32rem;" >
+        <div class="card-header" style="font-weight: bolder;">Search Flight</div>
+        <div class="card-body" style=" padding-left: 3%">
+    <form class="form center" [formGroup]="registerForm" (ngSubmit)="search()" >
+       
+        <div class="form-row">
+        <div class="form-group col-md-5">
+            <label>FromPlace</label>
+            <input type="text" class="form-control" formControlName="FromPlace">
+            
+        </div>
+        <div class="form-group col-md-5">
+            <label>ToPlace</label>
+            <input type="text" class="form-control" formControlName="ToPlace">
+           
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+  <label>Start Date</label>
+  <input type="date"  class="form-control" formControlName="StartDate" >
+  
+   </div>
+        
+
+        <div class="form-group col-md-5">
+  <label>End Date</label>
+  <input type="date"  class="form-control" formControlName="EndDate" >
+</div>
+    </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Search</button>
+        
+        </div>
+       
+    </form>
+    
+         <table class="table">
+            <div class="scrollit">   
+    <thead class="thead-light" style="background-color: cornflowerblue;">
+      
+      <tr>
+        <th scope="col">FlightNumber</th>
+        <th scope="col">AirlineNo</th>
+        <th scope="col">Fromplace</th>
+        <th scope="col">Toplace</th>
+        <th scope="col">Startdate</th>
+        <th scope="col">Enddate</th>
+        <th scope="col">BusinessSeat</th>
+        <th scope="col">NonBusinessSeat</th>
+        <th scope="col">Instrument</th>
+        <th scope="col">Datecreated</th>
+        <th  scope="col"></th>
+      </tr>
+    </thead>
+    
+  <tr *ngFor = "let f of flight" >
+      <td >{{f.flightnumber}}</td>
+      <td>{{f.airlineId}}</td>
+       <td>{{f.fromPlace}}</td> 
+       <td>{{f.toPlace}}</td> 
+       <td>{{f.startDate|date:'MM/dd/yyyy'}}</td> 
+       <td>{{f.endDate|date:'MM/dd/yyyy'}}</td> 
+       <td>{{f.availableBusinessSeat}}</td> 
+       <td>{{f.availableNonBusinessSeat}}</td> 
+       <td>{{f.instrument}}</td> 
+       <td>{{f.datecreated|date:'MM/dd/yyyy'}}</td> 
+      <td><button type="submit" class="btn btn-primary"  (click)="openbooktckModal(bookticketModal, f)"
+        >Book</button></td>
+    </tr>
+</div>
+  </table>
+    </div>
+</div> 
+ </div>
+ <ng-template #bookticketModal let-modal>
+ <div class="card " style="height: 32rem;" >
+    <div class="card-header" style="font-weight: bolder;">{{txt}}
+        <span class="btn btn-secondary" style="margin-left: 83%;" (click)="closemodel()" >X</span>
+        <div *ngIf="showMsg">
+            <div class="col-xs-12">
+              <p class="alert alert-warning">
+                  <strong>{{msgtxt}}</strong> 
+    
+              </p>
+            </div>
+    </div>
+    </div>
+    <div  class="card-title" style="margin-left: 5%;">
+        <div class="row">
+            <div class="col-md-2">
+            <label>Seat Type</label>
+            <!-- (change)="ngcnhg()" -->
+            <select  class="form-control" [(ngModel)]="seattype" >
+              <option>Bussiness</option>
+              <option>Non-Bussiness</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+        <label>No of Passenger</label>
+        <input class="form-control" type="text" [(ngModel)]="tt">
+        </div>
+        <div class="col-md-3">
+            <label>Date of journey</label>
+        <input class="form-control" type="date" [(ngModel)]="dateofjourney">
+        </div>
+        <div class="col-md-3">
+            <label>Email</label>
+        <input class="form-control" type="email" [(ngModel)]="email">
+        </div>
+        <div class="col-md-2" style="margin-top: 25px;">
+            <button class="btn btn-success" *ngIf="seattype!='' && tt!='' && dateofjourney !=''  && email !=''" (click)="ngcnhg1()">Add</button>
+            </div>
+    </div>
+    </div>
+    <div class="card-body" style=" padding-left: 3%; overflow-y: scroll;" *ngIf="cndt">
+ <form  >
+     <div class="container">
+         <div class="form-row" *ngFor="let obj of dataarray; let i=index ">
+        
+               
+                    
+         <div class="form-group col-md-2">
+<label>Passengername</label>
+<input type="text" class="form-control" name="name{{i}}" [(ngModel)]="obj.name" >
+         </div>
+<div class="form-group col-md-2">
+    <label>Age</label>
+    <input type="text" class="form-control" name="age{{i}}" [(ngModel)]="obj.age">
+</div>
+    <div class="form-group col-md-2">
+        <label for="inputgender">Gender</label>
+        <select  class="form-control" [(ngModel)]="obj.Gender" name="Gender{{i}}">
+          <option selected>Male</option>
+          <option>Female</option>
+        </select>
+         </div>
+         <div class="form-group col-md-2">
+            <label for="inputgender">Meal</label>
+            <select  class="form-control" [(ngModel)]="obj.Meal" name="Meal{{i}}">
+              <option selected>Veg</option>
+              <option>Non-Veg</option>
+            </select>
+             </div>
+             <div class="form-group  col-md-2">
+                <label>Seat Type</label>
+                <select  class="form-control" [disabled]="true" [(ngModel)]="obj.seattype" name="seattype{{i}}">
+                  <option>Bussiness</option>
+                  <option>Non-Bussiness</option>
+                </select>
+   
+                 </div>
+                 <div class="form-group  col-md-2">
+                    <label>Seat No</label>
+                    <input  class="form-control" type="text" [(ngModel)]="obj.Seatno" name="Seatno{{i}}">
+                   
+       
+                     </div>
+             <!-- <div class="form-group col-md-2" *ngIf="i!=0" style="margin-top: 27px;">
+
+                <span class="btn btn-danger" (click)="removepassenger(i)">-</span>
+             </div> -->
+            
+            
+         
+            
+        </div>
+       
+        <!-- <span class="btn btn-success" (click)="addpassanger()" *ngIf="cndt" >+</span> &nbsp; -->
+         <!-- <button class="btn btn-primary" *ngIf="cndt" >Submit</button> -->
+        
+     </div>
+ </form>
+ <div class="form-row" >
+  <div class="form-group col-md-2">
+    <label>Coupon Code</label>
+    <!-- <label>TotalCost</label> -->
+    <input type="text" class="form-control"  [(ngModel)]="txtcpnamnt" [disabled]="cpnmsg =='Code Applied'" >
+             </div>
+             <div class="form-group col-md-3" style="margin-top: 2rem;">
+               <label></label>
+             <button *ngIf="txtcpnamnt != '' " class="btn-primary"  [disabled]= "cpnmsg =='Code Applied'" (click)=applycpn()>Apply</button> &nbsp;
+             <label>{{cpnmsg}}</label>
+            </div>
+             <div class="form-group col-md-2">
+               <label></label>
+              
+             </div>
+
+</div>
+<div class="form-row">
+  <div class="form-group col-md-2">
+    <label>TotalCost:</label> &nbsp;
+    <label style="font-weight: bolder;">{{amntpaid}}</label>
+    <!-- <input type="text" class="form-control" name="name{{i}}" [(ngModel)]="obj.name" >
+             </div> -->
+</div>
+<div class="form-group col-md-2">
+    <label>Discount:</label> &nbsp;
+    <label style="font-weight: bolder;">{{cpnamnt}}</label>
+    <!-- <input type="text" class="form-control" name="name{{i}}" [(ngModel)]="obj.name" >
+             </div> -->
+</div>
+<div class="form-group col-md-2">
+  <label>PaidAmount:</label>&nbsp;
+  <label style="font-weight: bolder;">{{paidamnt}}</label>
+  <!-- <input type="text" class="form-control" name="name{{i}}" [(ngModel)]="obj.name" >
+           </div> -->
+</div>
+</div>
+<div> <button class="btn btn-primary"  (click)="onsubmit()" >Submit</button></div>
+    </div>
+ </div>
+ 
+ </ng-template>

@@ -1,0 +1,14 @@
+***************Forms********************
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value.Firstname,f.value.Lastname)">
+    <h1>UserForm</h1>
+<label>Firstname</label> &nbsp;
+    <input type="text" name="Firstname" placeholder="Firstname" ngModel>
+    <br>
+    <br>
+    <label>Lastname</label> &nbsp;
+    <input type="text" name="Lastname" placeholder="Lastname" ngModel>
+    <br>
+    <br>
+    <input type="submit" value="Submit"> &nbsp;
+    <input type="reset" value="Reset">
+</form>

@@ -1,0 +1,19 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    margin-top: 10px;
+    width: 70rem;
+    height: 30rem;
+    
+}
+.card-body
+{
+    overflow-y: scroll;
+
+}
+/* .was-validated{
+    height:50px;
+    width: 400px;
+  
+} */

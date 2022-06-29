@@ -1,0 +1,105 @@
+<p>login works!</p>
+<div *ngIf="islogin; else fa">
+<p>Islogin is true</p>
+</div>
+<ng-template #fa>
+<p>Islogin is false</p>
+</ng-template>
+<div *ngIf="X; then Tr ;else Fas">
+    <p>y</p>
+    </div>
+    <ng-template #Tr>
+        <p>Condition True </p>
+        </ng-template>
+        <ng-template #Fas>
+            <p>Condition False</p>
+            </ng-template>
+          <!--   <div>
+                {{users}}
+            </div> -->
+   <ul>
+       <li *ngFor="let i of list">
+{{i}}
+       </li>
+   </ul>   
+   <ul>
+    <li *ngFor="let i of users">
+ {{i.UserId}} 
+{{i.Username}}
+    </li>
+</ul>      
+<ul [ngSwitch]="Logname">
+<li *ngSwitchCase="'Admin'">
+<p>Admin Logged In</p>
+</li>
+<li *ngSwitchCase="'User1'">
+    <p>User1 Logged In</p>
+    </li>
+    <li *ngSwitchCase="'User2'">
+        <p>User2 Logged In</p>
+        </li>
+        <li *ngSwitchDefault>
+            <p>Admin Logged In</p>
+            </li>
+</ul>
+<ul *ngFor="let ps of pep">
+    <li *ngIf="ps.Age == 24">
+        {{ps.Name}}
+    </li>
+</ul>
+
+<ul *ngFor="let ps of pep" [ngSwitch]= "ps.Age">
+    <li *ngSwitchCase=27>
+    <p>{{ps.Name}}</p>
+    </li>
+    <li *ngSwitchCase="24">
+        <p>{{ps.Name}}</p>
+        </li>
+        <li *ngSwitchCase="18">
+            <p>{{ps.Name}}</p>
+            </li>
+    </ul>
+    <p [ngStyle]="{'color':'blue','font-size':'40px'}" >
+        mathan
+    </p>
+    <div>
+        <br>
+      <div *ngFor="let ps of pep" [ngClass]="{'highlight':ps.Age ===18}">
+          {{ps.Name}}
+      </div>  
+    </div>
+    *************Pipes**********
+    <div>
+        present Date: {{presentDate|date}}
+    </div>
+    <div>
+        present Date: {{presentDate|date:'shortDate'}}
+    </div>
+    <div>
+        present Date: {{presentDate|date:'fullDate'}}
+    </div>
+    <div>
+        present Date: {{presentDate|date:'MM/dd/yyyy'}}
+    </div>
+    <div>
+        present Date: {{presentDate|date:'h:mm:ss'}}
+    </div>
+
+    <p>{{8.675867|number:'2.4-5'}}</p>
+    <p>{{0.123|percent:"1.2-2"}}</p>
+    <p>{{34|percent:"2.2-2"}}</p>
+    <p>{{[1,2,3,4,5,6]|slice:3:6}}</p>
+    <p>{{[1,2,3,4,5,6]|slice:3}}</p>
+    <p>{{[1,2,3,4,5,6]|slice:3-1}}</p>
+
+    ****Lower&Uppercase***
+    <p>{{'Mathan'|lowercase}}</p>
+    <p>{{'Mathan'|uppercase}}</p>
+
+    <p>{{jsonval|json}}</p>
+
+    ******Currency*****
+    <p>{{456738|currency:'CAD'}}</p>
+    <p>{{456738|currency:'INR'}}</p>
+    <p>{{456738|currency:'EUR'}}</p>
+    <p>{{456738|currency:'USD'}}</p>

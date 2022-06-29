@@ -1,0 +1,102 @@
+<!-- <div class="card " >
+    <div class="card-header" style="font-weight: bolder;">TicketStatus</div>
+  </div> -->
+    <!-- <div class="card-title">
+      <div class="row col-md-14">
+        <form #f="ngForm"  style="margin-bottom: 10px; padding: 20px; ">
+        <input type="text"   name ="email"          placeholder="Search by email" ngModel>  &nbsp;
+      
+     
+      <button type="submit" style="height: 40px;" class="btn btn-primary" (click)="getticketbyemailid(f.value.email)">search</button>
+    </form> 
+    </div>
+    </div> -->
+    
+  
+    <!-- <div class="card-body  " style="overflow-x:scroll; overflow-y: scroll; height: 10rem; width: 80rem;" > -->
+      
+     
+       
+   <table class="table">
+       <thead>
+           <tr>
+               <th scope="col">PNRNo</th>
+               <th scope="col">FlightId</th>
+               <th scope="col">Dateofjourney</th>
+               <th scope="col">Cancelticket</th>
+<th scope="col"></th>
+<th scope="col"></th>
+           </tr>
+       </thead>
+       <tr *ngFor = "let f of ticket ">
+           <td>{{f.pnrno}}</td>
+           <td>{{f.flightId}}</td>
+           <td>{{f.dateofjourney|date:'MM/dd/yyyy'}}</td>
+           <td><button class="btn btn-warning" [disabled]="f.dateofjourney == presentDate" style="color: black;" (click)=cancelticket(f.pnrno)>cancel</button></td>
+           <td><button class="btn" style="background-color: chartreuse;" (click)=downloadticket(f.pnrno)><i class="fa fa-download" >Download</i></button></td>
+
+       </tr>
+   </table>
+       
+<!-- <table  class="table">
+    <thead >
+        <tr>
+          <th scope="col">PNRNo</th>
+          <th scope="col">FlightId</th>
+          <th scope="col">Dateofjourney</th>
+          <td scope="col">Cancelticket</td>
+          <td scope="col">Downloadticket</td>
+        </tr>
+      </thead>
+    <tr *ngFor = "let f of ticket " >
+        <td>{{f.pnrno}}</td>
+        <td>{{f.flightId}}</td>
+        <td>{{f.dateofjourney|date:'MM/dd/yyyy'}}</td>
+        <td><button class="btn btn-warning" [disabled]="f.dateofjourney == presentDate" style="color: black;" (click)=cancelticket(f.pnrno)>cancel</button></td>
+        <td><button class="btn" style="background-color: chartreuse;" (click)=downloadticket(f.pnrno)><i class="fa fa-download" >Download</i></button></td>
+    </tr>
+</table> -->
+
+<!-- </div> -->
+<!-- <div class="card">
+
+  <div class="card-title">
+    <div class="row col-md-14">
+<form #f1="ngForm"  style="margin-bottom: 10px; padding: 20px; ">
+   
+        <input type="text"   name ="pnr" 
+        placeholder="Search by pnr" ngModel>  &nbsp;
+      
+     
+      <button type="submit" style="height: 40px;" class="btn btn-primary" (click)="getticketbypnr(f1.value.pnr)">search</button>
+     
+    
+</form> 
+</div>
+</div> -->
+   
+<!-- <div class="card-body" style="overflow-y: scroll; overflow-x: scroll; height: 10rem;">
+  <table  class="table">
+    <thead >
+        <tr>
+          <th scope="col">PNRNo</th>
+          <th scope="col">FlightId</th>
+          <th scope="col">Dateofjourney</th>
+          <td  scope="col">cancelticket</td>
+          <td  scope="col">Downloadticket</td>
+        </tr>
+      </thead>
+    <tr *ngFor = "let f of ticketpnr ">
+        <td>{{f.pnrno}}</td>
+        <td>{{f.flightId}}</td>
+        <td>{{f.dateofjourney|date:'MM/dd/yyyy'}}</td>
+        <td><button  [disabled]="f.dateofjourney == presentDate"  class="btn btn-warning" style="color: black;" (click)=cancelticket(f.pnrno)> cancel</button> </td>
+        <td><button class="btn"  style="background-color: chartreuse;" (click)=downloadticket(f.pnrno)><i class="fa fa-download" >Download</i></button></td>
+        
+    </tr>
+    </table>
+</div>
+</div> -->
+
+
+<!-- style="color: black;" (click)=downloadticket(f.pnrno) -->
